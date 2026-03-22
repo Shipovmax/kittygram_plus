@@ -16,9 +16,18 @@ class Owner(models.Model):
         return f'{self.first_name} {self.last_name}'
 
 
+CHOICES = (
+    ('Gray', 'Gray'),
+    ('Black', 'Black'),
+    ('White', 'White'),
+    ('Ginger', 'Ginger'),
+    ('Mixed', 'Mixed'),
+)
+
+
 class Cat(models.Model):
     name = models.CharField(max_length=16)
-    color = models.CharField(max_length=16)
+    color = models.CharField(max_length=16, choices=CHOICES)
     birth_year = models.IntegerField()
     owner = models.ForeignKey(
         Owner, related_name='cats', on_delete=models.CASCADE)
